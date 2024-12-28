@@ -1,0 +1,9 @@
+.header {
+  --headerWrapperWidth: var(--pageContentWidth);
+  
+  &__wrapper {
+    max-width: var(--headerWrapperWidth);
+    margin: 0 auto;
+    padding: 2.5rem;
+  }
+}

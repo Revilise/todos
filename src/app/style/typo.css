@@ -1,0 +1,36 @@
+html {
+  --fontFamily: KanitFont, KanitFont Fallback;
+  font-size: 8px;
+  font-family: var(--fontFamily);
+}
+
+body {
+  font-size: var(--fontSize);
+  font-weight: var(--fontWeight);
+  color: var(--textColor);
+}
+
+h1, .h1 {
+  --fontSize: 6rem;
+  --fontWeight: 600;
+}
+
+h2, .h2 {
+  --fontSize: 3rem;
+  --fontWeight: 400;
+}
+
+.text1 {
+  --fontSize: 2.25rem;
+  --fontWeight: 400;
+}
+
+.text2 {
+  --fontSize: 2rem;
+  --fontWeight: 400;
+}
+
+.subtext {
+  --fontSize: 2.125rem;
+  --fontWeight: 200;
+}

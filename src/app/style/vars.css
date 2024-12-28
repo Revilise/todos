@@ -1,0 +1,12 @@
+:root {
+  --pageContentWidth: 75rem;
+  --pageBg: var(--lightGrey);
+  --textColor: var(--darkGrey100);
+  --fontSize: 2rem;
+  --fontWeight: 300;
+  
+  @media (prefers-color-scheme: dark) {
+    --textColor: var(--white000);
+    --pageBg: var(--darkBlueGray);
+  }
+}

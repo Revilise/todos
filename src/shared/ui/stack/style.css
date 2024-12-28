@@ -1,0 +1,15 @@
+.stack {
+  --stackBg: var(--white000);
+  --stackPad: 2.5rem;
+  --stackBorderRad: 1rem;
+  --stackShadow: var(--shadow1);
+  
+  background: var(--stackBg);
+  padding: var(--stackPad);
+  border-radius: var(--stackBorderRad);
+  box-shadow: var(--stackShadow);
+  
+  @media (prefers-color-scheme: dark) {
+    --stackBg: var(--blueGray);
+  }
+}

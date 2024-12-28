@@ -1,0 +1,28 @@
+.pageLayout {
+  /* cover */
+  --pageLayoutImgHeight: 35.625rem;
+  --pageLayoutImgWidth: 100%;
+  /* content */
+  --pageLayoutContentWidth: var(--pageContentWidth);
+  
+  &__cover {
+    width: var(--pageLayoutImgWidth);
+    height: var(--pageLayoutImgHeight);
+    position: absolute;
+    overflow: hidden;
+    z-index: -1;
+    
+    img {
+      height: 100%;
+      width: 100%;
+      position: static !important;
+      object-fit: cover;
+      object-position: 0 60%;
+    }
+  }
+  
+  &__content {
+    max-width: var(--pageLayoutContentWidth);
+    margin: 0 auto;
+  }
+}
