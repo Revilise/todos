@@ -1,5 +1,8 @@
-import { useCN } from "@/shared/lib";
+"use client"
+
+import { setGlobalCssVar, useCN } from "@/shared/lib";
 import { defaultProps as dp, propTypes, IProps } from "../config";
+import { useEffect, useRef } from "react";
 
 /**
  * Main header
@@ -15,12 +18,19 @@ export const Header = ({
   extraClasses = dp.extraClasses,
 }: Partial<IProps>) => {
   const { getCN } = useCN(baseClass);
+  const headerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (headerRef) {
+      setGlobalCssVar("--headerHeight", `${headerRef.current?.offsetHeight}px`)
+    }
+  }, [headerRef])
 
   return (
-     <header className={getCN("", extraClasses, utilClasses)}>
+     <header ref={headerRef} className={getCN("", extraClasses, utilClasses)}>
        <div className={getCN("wrapper")}>
          <div className={getCN("logoWrapper")}>
-           <span className={"h1"}>TODO</span>
+           <span className={"h2"}>TODO</span>
          </div>
        </div>
      </header>

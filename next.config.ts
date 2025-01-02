@@ -1,7 +1,12 @@
-import type { NextConfig } from "next";
+import withPWAInit from "@ducanh2912/next-pwa";
+import { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+const withPWA = withPWAInit({
+  dest: "public"
+})
 
-};
-
-export default nextConfig;
+export default withPWA({
+  experimental: {
+    cssChunking: true,
+  } satisfies NextConfig,
+})

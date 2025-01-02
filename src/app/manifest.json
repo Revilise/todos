@@ -1,0 +1,25 @@
+{
+  "theme_color": "#93a9ff",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "/assets/app-icon_maskable.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "/assets/app-icon_rounded.png",
+      "type": "image/png"
+    }
+  ],
+  "orientation": "portrait",
+  "display": "standalone",
+  "lang": "ru-RU",
+  "scope": "/",
+  "start_url": "/",
+  "name": "Todos list",
+  "short_name": "Todo"
+}

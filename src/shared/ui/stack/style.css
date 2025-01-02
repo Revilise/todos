@@ -1,15 +1,85 @@
 .stack {
   --stackBg: var(--white000);
-  --stackPad: 2.5rem;
+  --stackPadX: 2.5rem;
+  --stackPadY: 2.5rem;
   --stackBorderRad: 1rem;
-  --stackShadow: var(--shadow1);
+  --stackShadow: none;
+  --stackPosition: static;
+  --stackJustify: initial;
+  --stackAlign: initial;
+  --stackGap: 0;
   
   background: var(--stackBg);
-  padding: var(--stackPad);
+  padding-inline: var(--stackPadX);
+  padding-block: var(--stackPadY);
   border-radius: var(--stackBorderRad);
   box-shadow: var(--stackShadow);
+  position: var(--stackPosition);
+  justify-content: var(--stackJustify);
+  align-items: var(--stackAlign);
+  gap: var(--stackGap);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   
   @media (prefers-color-scheme: dark) {
     --stackBg: var(--blueGray);
   }
+  
+  &--isPad0 {
+    --stackPadX: 0rem;
+    --stackPadY: 0rem;
+  }
+  
+  &--isPadY12 {
+    --stackPadY: 1.5rem;
+  }
+  
+  &--isFlatBottom {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  &--isFlatTop {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+  
+  &--isFloat {
+    --stackPosition: sticky;
+  }
+  
+  &--isShadow1 {
+    --stackShadow: var(--shadow1);
+  }
+  
+  &--isShadow2 {
+    --stackShadow: var(--shadow2);
+  }
+  
+  &--isFullHeight {
+    --stackHeight: 100%;
+  }
+  
+  &--centerContent {
+    --stackJustify: center;
+    --stackAlign: center;
+  }
+  
+  &--isGap16 {
+    --stackGap: 2rem;
+  }
+  
+  &--TodoContainer {
+    --stackShadow: var(--shadow1);
+    --stackPadX: 0rem;
+    --stackPadY: 0rem;
+    margin: 0 0 4rem 0;
+    
+    @media (--mobile) {
+      margin: 1.5rem;
+    }
+  }
+  
+  
 }

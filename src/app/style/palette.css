@@ -1,5 +1,6 @@
 :root {
   --primary1: rgb(147, 169, 255);
+  --primary1-060: rgba(147, 169, 255, 0.6);
   
   --white008: rgba(255, 255, 255, .08);
   --white032: rgba(255, 255, 255, .32);
@@ -17,4 +18,5 @@
   --blueGray: rgba(37, 39, 60, 1);
   
   --shadow1: 0px 4px 64px rgba(0, 0, 0, 0.25);
+  --shadow2: 0px 4px 8px rgba(0, 0, 0, 0.25);
 }

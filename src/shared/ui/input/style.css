@@ -1,0 +1,39 @@
+.input {
+  --inputHeight: 5rem;
+  --inputValuePad: 1.5rem;
+  --inputValueBg: transparent;
+  --inputValueBorderRad: 4rem;
+  --inputValueBorderColor: var(--darkGrey032);
+  --inputValueBorderWidth: .20rem;
+  --inputValueFontSize: 2rem;
+  --inputValueFontWeight: 400;
+  --inputValueOutlineColor: var(--primary1);
+  --inputValueOutlineWidth: .25rem;
+  --inputValueColor: var(--darkGrey100);
+  
+  height: var(--inputHeight);
+  display: flex;
+  
+  @media (prefers-color-scheme: dark) {
+    --inputValueColor: var(--white000);
+    --inputValueBorderColor: var(--white032);
+  }
+  
+  &__value {
+    padding: var(--inputValuePad);
+    background: var(--inputValueBg);
+    border-radius: var(--inputValueBorderRad);
+    border: var(--inputValueBorderWidth) solid var(--inputValueBorderColor);
+    font-size: var(--inputValueFontSize);
+    font-weight: var(--inputValueFontWeight);
+    font-family: var(--fontFamily);
+    color: var(--inputValueColor);
+    width: 100%;
+    outline-offset: -0.15rem;
+    
+    &:focus {
+      --inputValueBorderColor: transparent;
+      outline: var(--inputValueOutlineWidth) solid var(--inputValueOutlineColor);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.fillFlex {
+  flex: 1 0;
+}
+
+.contents {
+  display: contents;
+}
+
+.mb8 {
+  margin-bottom: 1rem;
+}
+
+.mb24 {
+  margin-bottom: 3rem;
+}

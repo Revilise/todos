@@ -4,10 +4,17 @@ html {
   font-family: var(--fontFamily);
 }
 
-body {
+body, input, select, textarea, span, p {
+  color: var(--textColor);
+  
+  @media (prefers-color-scheme: dark) {
+    --textColor: var(--white000);
+  }
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, div, span {
   font-size: var(--fontSize);
   font-weight: var(--fontWeight);
-  color: var(--textColor);
 }
 
 h1, .h1 {

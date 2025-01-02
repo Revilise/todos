@@ -4,6 +4,7 @@
   --textColor: var(--darkGrey100);
   --fontSize: 2rem;
   --fontWeight: 300;
+  --customColor: var(--darkGrey100);
   
   @media (prefers-color-scheme: dark) {
     --textColor: var(--white000);

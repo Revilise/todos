@@ -32,14 +32,14 @@ export const PageLayout = ({
          />
        </div>
 
-       { headerSlot && (
+       {headerSlot && (
           <div className={getCN("header")}>
             {headerSlot}
           </div>
        )}
 
        <div className={getCN("content")}>
-       {children}
+         {children}
        </div>
      </div>
   )

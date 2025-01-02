@@ -1,0 +1,92 @@
+.checker {
+  --checkerHeight: 6.375rem;
+  --checkerBg: transparent;
+  --checkerWidth: 100%;
+  --checkerBorderWidth: .2rem;
+  --checkerBorderColor: var(--darkGrey032);
+  --checkerBorderRad: 1rem;
+  --checkerPadX: 1.5rem;
+  --checkerPadY: auto;
+  --checkerGap: .5rem;
+  
+  --checkerValueFontSize: 2.25rem;
+  --checkerValueFontWeight: 400;
+  
+  --checkerPseudoBg: var(--white000);
+  --checkerHoverPseudoBg: var(--primary1-060);
+  --checkerActivePseudoBg: var(--primary1);
+  --checkerPseudoBorderColor: var(--darkGrey032);
+  --checkerPseudoActiveColor: var(--primary1);
+  
+  --checkerLabelColor: var(--darkGrey100);
+  --checkerHoverLabelColor: var(--darkGrey060);
+  --checkerActiveColor: var(--darkGrey032);
+  
+  background: var(--checkerBg);
+  border: var(--checkerBorderWidth) solid var(--checkerBorderColor);
+  border-radius: var(--checkerBorderRad);
+  height: var(--checkerHeight);
+  padding-inline: var(--checkerPadX);
+  padding-block: var(--checkerPadY);
+  gap: var(--checkerGap);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  
+  &:hover & {
+    &__pseudo {
+      background: var(--checkerHoverPseudoBg);
+    }
+    
+    &__label {
+      color: var(--checkerHoverLabelColor);
+    }
+  }
+  
+  &__value {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    
+    &:checked ~ .checker__pseudo {
+      border-color: var(--checkerPseudoActiveColor);
+      background-color: var(--checkerActivePseudoBg);
+      background-image: url("/assets/icons/icon-mark.svg");
+      background-repeat: no-repeat;
+      background-position: 100% 60%;
+      background-size: 1.25rem;
+    }
+    
+    &:checked ~ .checker__label {
+      text-decoration: line-through;
+      color: var(--checkerActiveColor);
+    }
+  }
+  
+  &__pseudo {
+    width: 2rem;
+    height: 2rem;
+    border-radius: .5rem;
+    border: 2px solid var(--checkerPseudoBorderColor);
+    background: var(--checkerPseudoBg);
+    transition: background-color .2s ease-in;
+  }
+  
+  &__label {
+    font-size: var(--checkerValueFontSize);
+    font-weight: var(--checkerValueFontWeight);
+    color: var(--checkerLabelColor);
+    transition: color .25s ease-in;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    --checkerLabelColor: var(--white000);
+    --checkerHoverLabelColor: var(--white060);
+    --checkerActiveColor: var(--white032);
+    --checkerBorderColor: var(--white032);
+  }
+}

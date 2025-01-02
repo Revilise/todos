@@ -18,7 +18,7 @@ export const useCN = (baseClass?: string) => {
         return value && `${ element ? elementClass : baseClass}--${key}`
       }).filter(Boolean).join(' ');
 
-      return `${elementClass} ${modsClasses} ${utilsClasses}`.trim();
+      return [elementClass, modsClasses, utilsClasses].filter(Boolean).join(' ').trim();
     }
   }
 }
@@ -35,4 +35,9 @@ export const jsonFetcher = async <T>(url: string) => {
   }
 
   return await res.json() as T;
+}
+
+export const setGlobalCssVar = (name: string, value: string) => {
+  const root = document?.querySelector("body");
+  root?.style?.setProperty(name, value);
 }
