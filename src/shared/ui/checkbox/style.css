@@ -1,6 +1,6 @@
 .checker {
   --checkerHeight: 6.375rem;
-  --checkerBg: transparent;
+  --checkerBg: var(--white000);
   --checkerWidth: 100%;
   --checkerBorderWidth: .2rem;
   --checkerBorderColor: var(--darkGrey032);

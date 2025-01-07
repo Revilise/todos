@@ -47,6 +47,7 @@
   
   &--isFloat {
     --stackPosition: sticky;
+    z-index: 10;
   }
   
   &--isShadow1 {
@@ -81,5 +82,8 @@
     }
   }
   
+  &--isRelative {
+    --stackPosition: relative;
+  }
   
 }

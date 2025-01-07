@@ -1,5 +1,6 @@
 import { ICheckbox} from "@/shared/ui/checkbox/config";
-import { ChangeEvent, KeyboardEvent, useState } from "react";
+import {ChangeEvent, createRef, KeyboardEvent, useRef, useState} from "react";
+import {Todos} from "@/widgets/todos";
 
 export class TodosModel {
 
@@ -11,12 +12,12 @@ export class TodosModel {
     return Math.random().toString(36);
   }
 
-  static useModel(items: ICheckbox[] = []) {
+  static useModel(items: ICheckbox[] = [], animated: boolean = false) {
     const [ todos, setTodos ] = useState<ICheckbox[]>(items);
     const [ inputValue, setInputValue ] = useState<string>("");
 
     const createTodo = (label: string): ICheckbox => {
-      return { id: TodosModel.generateId(), label: label, isChecked: false };
+      return { id: TodosModel.generateId(), label: label, isChecked: false, ref: createRef() };
     }
 
     const pushTodo = (todo: ICheckbox) => {
@@ -25,6 +26,11 @@ export class TodosModel {
 
     const popTodo = (todo: ICheckbox) => {
       setTodos([ todo ].concat(todos));
+    }
+
+    const moveToEndTodo = (todo: ICheckbox) => {
+      const list = todos.filter((item: ICheckbox) => item.id !== todo.id);
+      setTodos(list.concat([todo]));
     }
 
     const removeTodo = (todo: ICheckbox) => {
@@ -48,19 +54,20 @@ export class TodosModel {
       const target = todos.find(todo => todo.id === checkbox?.id);
 
       if (target) {
-        // return removeTodo(target);
+        target.isChecked = checkbox.checked;
+
+        if (target.isChecked) {
+          moveToEndTodo(target);
+        }
       }
     }
 
     return {
       todos,
-      pushTodo,
-      removeTodo,
       inputValue,
       onInputChange,
       onInputKeydown,
       onCheckboxChange
     }
   }
-
 }
