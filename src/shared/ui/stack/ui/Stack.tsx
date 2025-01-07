@@ -16,7 +16,7 @@ export const Stack = forwardRef(
       extraClasses = dp.extraClasses,
       utilClasses = dp.utilClasses,
       children = dp.children
-    }: Partial<IProps>, ref: Ref<HTMLElement>) => {
+    }: Partial<IProps>, ref: Ref<HTMLDivElement>) => {
      const { getCN } = useCN(baseClass);
 
      return (

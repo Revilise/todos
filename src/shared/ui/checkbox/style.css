@@ -88,5 +88,6 @@
     --checkerHoverLabelColor: var(--white060);
     --checkerActiveColor: var(--white032);
     --checkerBorderColor: var(--white032);
+    --checkerBg: var(--darkGrey008);
   }
 }
