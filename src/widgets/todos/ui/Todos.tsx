@@ -25,7 +25,7 @@ export const Todos = ({
   items = dp.items,
 }: Partial<IProps>) => {
   const { getCN } = useCN(baseClass);
-  const { todos, inputValue, onInputKeydown, onInputChange, onCheckboxChange } = TodosModel.useModel(items);
+  const { todos, inputValue, onInputKeydown, onInputChange, onCheckboxChange, countCompleted } = TodosModel.useModel(items);
 
   return (
      <div className={getCN("", extraClasses, utilClasses)}>
@@ -68,6 +68,10 @@ export const Todos = ({
              }
            </Stack>
          </AnimatePresence>
+
+         <Stack>
+           <span className={"subtext alignRight"}>{countCompleted}/{todos.length} todos completed</span>
+         </Stack>
        </Stack>
      </div>
   )

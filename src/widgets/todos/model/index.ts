@@ -1,6 +1,5 @@
 import { ICheckbox} from "@/shared/ui/checkbox/config";
 import {ChangeEvent, createRef, KeyboardEvent, useRef, useState} from "react";
-import {Todos} from "@/widgets/todos";
 
 export class TodosModel {
 
@@ -12,9 +11,14 @@ export class TodosModel {
     return Math.random().toString(36);
   }
 
+  static countCompleted(todos: ICheckbox[]) {
+    return todos.filter((todo: ICheckbox) => todo.isChecked).length;
+  }
+
   static useModel(items: ICheckbox[] = [], animated: boolean = false) {
     const [ todos, setTodos ] = useState<ICheckbox[]>(items);
     const [ inputValue, setInputValue ] = useState<string>("");
+    const [ countCompleted, updateCompletedCount ] = useState<number>(() => TodosModel.countCompleted(todos));
 
     const createTodo = (label: string): ICheckbox => {
       return { id: TodosModel.generateId(), label: label, isChecked: false, ref: createRef() };
@@ -59,6 +63,8 @@ export class TodosModel {
         if (target.isChecked) {
           moveToEndTodo(target);
         }
+
+        updateCompletedCount(TodosModel.countCompleted(todos));
       }
     }
 
@@ -67,7 +73,8 @@ export class TodosModel {
       inputValue,
       onInputChange,
       onInputKeydown,
-      onCheckboxChange
+      onCheckboxChange,
+      countCompleted
     }
   }
 }
