@@ -1,14 +1,4 @@
-
-// 1. перебрать все файлы с расширением .svg в папке assets/icons
-// 2. прочитатать каждый файл
-// 3. выдрать из каждого файла содержимое svg
-// 4. записать файл index.svg перечисление symbol
-
-// node-fs, fs-extra, node-html-parser, @types/fs-extra
-
 import fs from "fs";
-import path from "path";
-import {optimize} from "svgo";
 import { parse } from "node-html-parser";
 
 interface SpriteBundlerConfig {
@@ -44,7 +34,6 @@ class Symbol {
     this.width = width;
     this.viewBox = viewBox;
   }
-
 }
 
 class SpriteBundler {

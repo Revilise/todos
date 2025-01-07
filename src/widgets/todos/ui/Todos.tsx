@@ -4,9 +4,7 @@ import { defaultProps as dp, propTypes, IProps } from "../config";
 import { Checkbox } from "@/shared/ui/checkbox";
 import { Stack } from "@/shared/ui/stack";
 import { Input } from "@/shared/ui/input";
-import Image from "next/image";
 import { useCN } from "@/shared/lib";
-import Cactus from "@/public/assets/icons/icon-cactus.svg";
 import { TodosModel } from "@/widgets/todos/model";
 import {Icon} from "@/shared/ui/icon";
 
