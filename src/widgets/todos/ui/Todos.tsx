@@ -9,6 +9,7 @@ import { TodosModel } from "@/widgets/todos/model";
 import {Icon} from "@/shared/ui/icon";
 import {AnimatePresence} from "framer-motion";
 import {Collapse} from "@/shared/animate/collapse/ui/Collapse";
+import {TodosChecker} from "@/widgets/todos/ui/TodosChecker";
 
 /**
  * Todos list
@@ -25,7 +26,7 @@ export const Todos = ({
   items = dp.items,
 }: Partial<IProps>) => {
   const { getCN } = useCN(baseClass);
-  const { todos, inputValue, onInputKeydown, onInputChange, onCheckboxChange, countCompleted } = TodosModel.useModel(items);
+  const { todos, inputValue, onInputKeydown, onInputChange, onCheckboxChange, countCompleted, removeTodo } = TodosModel.useModel(items);
 
   return (
      <div className={getCN("", extraClasses, utilClasses)}>
@@ -55,7 +56,13 @@ export const Todos = ({
              {todos.length > 0
                 ? (todos.map(({ id, isChecked, label }) =>
                    <Collapse key={id}>
-                     <Checkbox id={id} key={id} isChecked={isChecked} label={label} onChange={onCheckboxChange} />
+                     <Todos.Checker
+                        id={id}
+                        isChecked={isChecked}
+                        label={label}
+                        onChange={onCheckboxChange}
+                        onRemoveClick={() => removeTodo(id)}
+                     />
                    </Collapse>
                 ))
                 : (
@@ -78,3 +85,4 @@ export const Todos = ({
 }
 
 Todos.propTypes = propTypes;
+Todos.Checker = TodosChecker;
