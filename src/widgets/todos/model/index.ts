@@ -37,8 +37,8 @@ export class TodosModel {
       setTodos(list.concat([todo]));
     }
 
-    const removeTodo = (todo: ICheckbox) => {
-      setTodos(todos.filter((item: ICheckbox) => item.id !== todo.id))
+    const removeTodo = (id: string) => {
+      setTodos(todos.filter((item: ICheckbox) => item.id !== id))
     }
 
     const onInputKeydown  = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -74,7 +74,8 @@ export class TodosModel {
       onInputChange,
       onInputKeydown,
       onCheckboxChange,
-      countCompleted
+      countCompleted,
+      removeTodo
     }
   }
 }
