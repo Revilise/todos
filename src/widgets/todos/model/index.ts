@@ -1,5 +1,5 @@
 import { ICheckbox} from "@/shared/ui/checkbox/config";
-import {ChangeEvent, createRef, KeyboardEvent, useRef, useState} from "react";
+import {ChangeEvent, createRef, KeyboardEvent, useState} from "react";
 
 export class TodosModel {
 

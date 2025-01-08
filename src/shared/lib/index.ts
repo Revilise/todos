@@ -30,14 +30,23 @@ export const startWithUpperCase = (str: string): string => {
 export const jsonFetcher = async <T>(url: string) => {
   const res = await fetch(url);
 
-  if (!res.ok) {
-    throw new Error('An error occurred while fetching the data.');
-  }
-
   return await res.json() as T;
 }
 
+/**
+ * Sets css variable in <html> root
+ * @param name{string} - name of css variable
+ * @param value{string} - new value for css variable
+ */
 export const setGlobalCssVar = (name: string, value: string) => {
   const root = document?.querySelector("body");
   root?.style?.setProperty(name, value);
+}
+
+export const generateUniqueId = () => {
+  if (crypto?.randomUUID) {
+    return crypto.randomUUID()
+  }
+
+  return Math.random().toString(36);
 }
