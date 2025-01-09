@@ -1,11 +1,11 @@
 .checker {
-  --checkerHeight: 6.375rem;
+  --checkerHeight: fit-content;
   --checkerBg: var(--white000);
   --checkerWidth: 100%;
-  --checkerBorderWidth: .2rem;
-  --checkerBorderColor: var(--darkGrey032);
+  --checkerBorderWidth: 0;
+  --checkerBorderColor: transparent;
   --checkerBorderRad: 1rem;
-  --checkerPadX: 1.5rem;
+  --checkerPadX: auto;
   --checkerPadY: auto;
   --checkerGap: .5rem;
   
@@ -34,6 +34,7 @@
   align-items: center;
   user-select: none;
   cursor: pointer;
+  width: var(--checkerWidth);
   
   &:hover & {
     &__pseudo {
@@ -87,7 +88,6 @@
     --checkerLabelColor: var(--white000);
     --checkerHoverLabelColor: var(--white060);
     --checkerActiveColor: var(--white032);
-    --checkerBorderColor: var(--white032);
     --checkerBg: var(--darkGrey008);
   }
 }

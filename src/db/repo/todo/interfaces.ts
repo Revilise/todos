@@ -1,8 +1,11 @@
+import {IBaseCreate, IBaseUpdate} from "@/db/lib/adapter";
 
 export interface ITodo {
   uid: string,
   label: string,
   isDone: boolean,
+  createdAt: Date,
+  updatedAt: Date,
 }
 
 export interface ITodoWhere extends Partial<ITodo> {
@@ -11,17 +14,17 @@ export interface ITodoWhere extends Partial<ITodo> {
   orderBy: string,
 }
 
-export interface ITodoCreate {
+export interface ITodoCreate extends IBaseCreate {
   label: string,
   isDone: boolean
 }
 
 
-export interface ITodoUpdate {
+export interface ITodoUpdate extends IBaseUpdate {
   uid: string,
   updRecord: ITodo,
 }
 
-export interface ITodoDelete extends ITodo {
+export interface ITodoDelete {
   uid: string,
 }

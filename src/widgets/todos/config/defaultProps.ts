@@ -4,7 +4,7 @@ export const defaultProps: IProps = {
   baseClass: "todos",
   extraClasses: {},
   utilClasses: [],
-  items: []
+  items: [],
 }
 
 export const checkerDefaultProps: ICheckerProps = {

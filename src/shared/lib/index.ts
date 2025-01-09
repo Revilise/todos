@@ -45,7 +45,7 @@ export const setGlobalCssVar = (name: string, value: string) => {
 
 export const generateUniqueId = () => {
   if (crypto?.randomUUID) {
-    return crypto.randomUUID()
+    return crypto.randomUUID().split("-")[0]
   }
 
   return Math.random().toString(36);

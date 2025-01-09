@@ -1,7 +1,6 @@
 "use client"
 
 import { defaultProps as dp, propTypes, IProps } from "../config";
-import { Checkbox } from "@/shared/ui/checkbox";
 import { Stack } from "@/shared/ui/stack";
 import { Input } from "@/shared/ui/input";
 import { useCN } from "@/shared/lib";
@@ -10,6 +9,7 @@ import {Icon} from "@/shared/ui/icon";
 import {AnimatePresence} from "framer-motion";
 import {Collapse} from "@/shared/animate/collapse/ui/Collapse";
 import {TodosChecker} from "@/widgets/todos/ui/TodosChecker";
+import {Modal} from "@/shared/ui/Modal";
 
 /**
  * Todos list
@@ -29,6 +29,7 @@ export const Todos = ({
   const {
     todos = [],
     inputValue,
+    selectedTodo,
     onInputKeydown,
     onInputChange,
     onCheckboxChange,
@@ -83,7 +84,18 @@ export const Todos = ({
              }
            </Stack>
          </AnimatePresence>
-
+         <AnimatePresence>
+           {selectedTodo && (
+              <Modal
+                 key={"modal"}
+                 headerSlot={<span>{selectedTodo?.label}</span>}
+                 containerSlotAttrs={{ layoutId: `todos-item-${selectedTodo?.uid}` }}
+                 closeLink={"/todos"}
+              >
+                {selectedTodo?.isDone}
+              </Modal>
+           )}
+         </AnimatePresence>
          <Stack>
            <span className={"subtext alignRight"}>{countCompleted}/{todos.length} todos completed</span>
          </Stack>

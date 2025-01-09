@@ -1,7 +1,8 @@
-import { ICheckbox} from "@/shared/ui/checkbox/config";
-import {ChangeEvent, createRef, KeyboardEvent, useState} from "react";
+import { ICheckbox } from "@/shared/ui/checkbox/config";
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import useSWR, {mutate} from "swr";
-import {ITodo, ITodoCreate, ITodoDelete, ITodoUpdate} from "@/db/repo/todo/interfaces";
+import { ITodo, ITodoCreate, ITodoDelete, ITodoUpdate } from "@/db/repo/todo/interfaces";
+import { useSearchParams } from "next/navigation";
 
 export class TodosModel {
 
@@ -57,82 +58,29 @@ export class TodosModel {
   }
 
   static useSingleTodo(id: string) {
-    const key = `${TodosModel.cfg.domain}/${id}`;
+    return fetch(`${TodosModel.cfg.domain}/${id}`).then(res => res.json() as Promise<ITodo>);
+  }
 
-    const { data, error, isLoading } = useSWR<ITodo>(key, (url: string) => {
-      return fetch(url, {
-        method: "GET",
-      }).then(res => res.json());
-    })
+  static async useServerTodo(id: string) {
+    const todo = await fetch(`${TodosModel.cfg.domain}/${id}`, {
+      method: "GET"
+    }).then(res => res.json() as Promise<ITodo>);
 
-    const mutateSingleTodo = () => mutate(key);
-
-    return { todo: data, todoError: error, todoIsLoading: isLoading, mutateSingleTodo };
+    return { todo }
   }
 
   static useTodoModel() {
-    const { todos } = TodosModel.useTodos();
+    const search = useSearchParams();
+    const id = search.get("id");
+    console.log("id =>", id)
+
+    const { todos, mutateSwrTodos } = TodosModel.useTodos();
+    const [ selectedTodo, setSelectedTodo ] = useState<ITodo>();
     const [ inputValue, setInputValue ] = useState<string>("");
-
-    const onInputKeydown  = (event: KeyboardEvent<HTMLInputElement>) => {
-
-    }
-
-    const onInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
-
-    }
-
-    const onCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
-
-    }
-
-    const removeTodo = (uid: string) => {
-
-    }
-
-    return {
-      todos,
-      inputValue,
-
-      removeTodo,
-      countCompleted: 0,
-
-      onInputKeydown,
-      onInputChange,
-      onCheckboxChange,
-    }
-  }
-
-  static useModel(items: ICheckbox[] = []) {
-    const [ todos, setTodos ] = useState<ICheckbox[]>(items);
-    const [ inputValue, setInputValue ] = useState<string>("");
-    const [ countCompleted, updateCompletedCount ] = useState<number>(() => TodosModel.countCompleted(todos));
-
-    const createTodo = (label: string): ICheckbox => {
-      return { id: TodosModel.generateId(), label: label, isChecked: false, ref: createRef() };
-    }
-
-    const pushTodo = (todo: ICheckbox) => {
-      setTodos(todos.concat([ todo ]))
-    }
-
-    const popTodo = (todo: ICheckbox) => {
-      setTodos([ todo ].concat(todos));
-    }
-
-    const moveToEndTodo = (todo: ICheckbox) => {
-      const list = todos.filter((item: ICheckbox) => item.id !== todo.id);
-      setTodos(list.concat([todo]));
-    }
-
-    const removeTodo = (id: string) => {
-      setTodos(todos.filter((item: ICheckbox) => item.id !== id))
-    }
 
     const onInputKeydown  = (event: KeyboardEvent<HTMLInputElement>) => {
       if (event?.key == "Enter" && inputValue.trim().length > 0) {
-        const todo = createTodo(inputValue);
-        popTodo(todo)
+        TodosModel.createTodo({ label: inputValue, isDone: false }).then(() => mutateSwrTodos());
         setInputValue("");
       }
     }
@@ -142,28 +90,34 @@ export class TodosModel {
     }
 
     const onCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const checkbox = event.nativeEvent.target as HTMLInputElement;
-      const target = todos.find(todo => todo.id === checkbox?.id);
 
-      if (target) {
-        target.isChecked = checkbox.checked;
-
-        if (target.isChecked) {
-          moveToEndTodo(target);
-        }
-
-        updateCompletedCount(TodosModel.countCompleted(todos));
-      }
     }
+
+    const removeTodo = (uid: string) => {
+      TodosModel.deleteTodo({ uid }).then(res => mutateSwrTodos());
+    }
+
+    useEffect(() => {
+      if (id) {
+        TodosModel.useSingleTodo(id).then(todo => setSelectedTodo(todo))
+      }
+      else if (!id && selectedTodo !== null) {
+        setSelectedTodo(undefined);
+      }
+    }, [id])
 
     return {
       todos,
       inputValue,
-      onInputChange,
+
+      selectedTodo,
+
+      removeTodo,
+      countCompleted: 0,
+
       onInputKeydown,
+      onInputChange,
       onCheckboxChange,
-      countCompleted,
-      removeTodo
     }
   }
 }

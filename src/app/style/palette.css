@@ -1,13 +1,13 @@
 :root {
-  --primary1: rgb(147, 169, 255);
-  --primary1-060: rgba(147, 169, 255, 0.6);
+  --primary1: rgb(144, 166, 249);
+  --primary1-060: rgb(94, 107, 160);
   
-  --white008: rgba(255, 255, 255, .08);
-  --white032: rgba(255, 255, 255, .32);
-  --white060: rgba(255, 255, 255, .6);
-  --white087: rgba(255, 255, 255, .87);
-  --lightGrey: rgba(229, 229, 229, 1);
-  --white000: rgba(255, 255, 255, 1);
+  --white008: rgb(55, 57, 62);
+  --white032: rgb(98, 99, 101);
+  --white060: rgb(163, 163, 165);
+  --white087: rgb(219, 219, 220);
+  --lightGrey: rgb(219, 219, 219);
+  --white000: rgb(249, 249, 249);
   
   --darkGrey100: rgba(33, 33, 33, 1);
   --darkGrey087: rgba(33, 33, 33, .87);
@@ -15,6 +15,7 @@
   --darkGrey032: rgba(33, 33, 33, .32);
   --darkGrey008: rgba(33, 33, 33, .08);
   --darkBlueGray: rgba(24, 24, 36, 1);
+  --darkBlueGray060: rgba(24, 24, 36, .6);
   --blueGray: rgba(37, 39, 60, 1);
   
   --shadow1: 0px 4px 64px rgba(0, 0, 0, 0.25);

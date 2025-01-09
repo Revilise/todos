@@ -1,0 +1,27 @@
+.todos {
+  --todosItemBorderWidth: .2rem;
+  --todosItemBorderColor: var(--darkGrey032);
+  --todosItemBorderRad: 1rem;
+  --todosItemPadY: auto;
+  --todosItemPadX: 1.5rem 1rem;
+  --todosItemHeight: 6.375rem;
+  
+  &__item {
+    border: var(--todosItemBorderWidth) solid var(--todosItemBorderColor);
+    border-radius: var(--todosItemBorderRad);
+    padding-inline: var(--todosItemPadX);
+    padding-block: var(--todosItemPadY);
+    height: var(--todosItemHeight);
+    align-items: center;
+    display: flex;
+    width: 100%;
+    
+    .checker {
+      --checkerBorderRad: 1rem 0 0 1rem;
+    }
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    --todosItemBorderColor: var(--white032);
+  }
+}

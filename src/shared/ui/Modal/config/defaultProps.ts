@@ -1,11 +1,11 @@
 import { IProps } from "./interfaces";
 
 export const defaultProps: IProps = {
-  baseClass: "btn",
+  baseClass: "modal",
   extraClasses: {},
   utilClasses: [],
-  label: "",
-  icon: "",
-  iconPosition: "left",
-  onClick: () => {}
+  headerSlot: null,
+  children: null,
+  closeLink: "",
+  containerSlotAttrs: {}
 }

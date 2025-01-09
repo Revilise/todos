@@ -1,0 +1,8 @@
+.btn {
+  --btnCursor: pointer;
+  --btnPad: 1rem;
+  --btnHeight: fit-content;
+  cursor: var(--btnCursor);
+  padding: var(--btnPad);
+  height: var(--btnHeight);
+}

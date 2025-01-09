@@ -2,6 +2,8 @@ import { useCN } from "@/shared/lib";
 import { Checkbox } from "@/shared/ui/checkbox";
 import { Button } from "@/shared/ui/button";
 import { checkerDefaultProps as dp, ICheckerProps } from "@/widgets/todos/config";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 /**
  * Todos checker item
@@ -28,9 +30,10 @@ export const TodosChecker = ({
   const { getCN } = useCN(baseClass);
 
   return (
-     <div className={getCN("", extraClasses, utilClasses)}>
+     <motion.div className={getCN("", extraClasses, utilClasses)}>
        <Checkbox id={id} label={label} isChecked={isChecked} onChange={onChange} />
+       <Link href={`/todos?id=${id}`}>Open</Link>
        <Button icon={"close"} onClick={onRemoveClick} />
-     </div>
+     </motion.div>
   )
 }

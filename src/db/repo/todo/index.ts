@@ -19,10 +19,10 @@ export class TodosRepository implements Repository<ITodo, ITodoWhere, ITodoCreat
         return this.adapter.select<ITodo, ITodoWhere>(this.dtoName, where);
     }
     create(data: ITodoCreate): Promise<ITodo> {
-        return this.adapter.create(this.dtoName, data);
+        return this.adapter.create<ITodo, ITodoCreate>(this.dtoName, data);
     }
     update(record: ITodoUpdate): Promise<ITodo> {
-        return this.adapter.update(this.dtoName, record);
+        return this.adapter.update<ITodo, ITodoUpdate>(this.dtoName, record);
     }
     delete(record: ITodoDelete): Promise<ITodo> {
         return this.adapter.delete(this.dtoName, record);
