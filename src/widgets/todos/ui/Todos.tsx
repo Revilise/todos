@@ -23,10 +23,18 @@ export const Todos = ({
   baseClass = dp.baseClass,
   extraClasses = dp.extraClasses,
   utilClasses = dp.utilClasses,
-  items = dp.items,
 }: Partial<IProps>) => {
   const { getCN } = useCN(baseClass);
-  const { todos, inputValue, onInputKeydown, onInputChange, onCheckboxChange, countCompleted, removeTodo } = TodosModel.useModel(items);
+
+  const {
+    todos = [],
+    inputValue,
+    onInputKeydown,
+    onInputChange,
+    onCheckboxChange,
+    countCompleted,
+    removeTodo
+  } = TodosModel.useTodoModel();
 
   return (
      <div className={getCN("", extraClasses, utilClasses)}>
@@ -54,14 +62,14 @@ export const Todos = ({
          <AnimatePresence>
            <Stack extraClasses={{ isGap16: true, isRelative: true }} utilClasses={["fillFlex"]}>
              {todos.length > 0
-                ? (todos.map(({ id, isChecked, label }) =>
-                   <Collapse key={id}>
+                ? (todos.map(({ uid, isDone, label }) =>
+                   <Collapse key={uid}>
                      <Todos.Checker
-                        id={id}
-                        isChecked={isChecked}
+                        id={uid}
+                        isChecked={isDone}
                         label={label}
                         onChange={onCheckboxChange}
-                        onRemoveClick={() => removeTodo(id)}
+                        onRemoveClick={() => removeTodo(uid)}
                      />
                    </Collapse>
                 ))
